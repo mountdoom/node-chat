@@ -1,3 +1,3 @@
 $(document).ready(function() {
-	BOX_WIDTH = $('#frame').width() - 200 + 'px';
+	BOX_WIDTH = $('#frame').width() - 200;
 });

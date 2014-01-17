@@ -280,8 +280,7 @@ body > header img {
 #entry a#submit {
   position: absolute;
   background: url(../images/send.png) no-repeat;
-  /*right: -6px;*/right: 0px;
-  /*top: -4px;*/ bottom: -5px;
+  bottom: -5px;
   text-align: center;
   width: 68px;
   height: 27px;
@@ -296,6 +295,7 @@ body > header img {
   text-decoration: none;
 }
 
+/*
 #entry a#submit:hover {
   background-position: 0 -27px;
   text-shadow: rgba(255,255,255,0.3) 0 1px 0, rgba(255,255,255,0.8) 0 0 6px;
@@ -306,6 +306,7 @@ body > header img {
   line-height: 27px;
   text-indent: 1px;
 }
+*/
 
 #entry fieldset {
   position: absolute;

@@ -7,6 +7,19 @@ body {
 }
 
 #chat-log div.chat-msg {
+	background: #e83015;
+	border-bottom: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	margin-bottom: 20px;
+}
+
+#chat-log div.chat-msg:nth-child(2n) {
+	background: none;
+}
+
+#chat-log div.chat-system-msg {
 	padding: 6px 70px 6px 30px;
 	font-size: 10pt;
 
@@ -15,21 +28,18 @@ body {
 	line-height: 140%;
 	text-indent: -20px;
 	border-radius: 3px;
-
 	margin: 10px auto;
-
 	border: solid 1px red;
-	background: #fff;
+	background: #fff !important;
 }
-
-#chat-log div.chat-msg:nth-child(2n) {
-	background: #fff;
-}
-
 #chat-log div.chat-system-msg .chat-nick {
 	margin-right: 4px;
 	color: red;
 	font-weight: bold;
+}
+#chat-log div.chat-system-msg .chat-text {
+	color: red;
+	font-size: 14px;
 }
 
 #chat-log {
@@ -49,10 +59,23 @@ body {
 	text-shadow: none;
 }
 .chat-nick {
-	color: red;
+	font-size: 25px;
+	font-weight: bold;
+	-webkit-transform: rotate(6deg);
 }
 .chat-text {
-	color: red;
+	color: #fff;
+	font-weight: bold;
+	color: #fff;
+	font-weight: bold;
+	display: block;
+	padding: 10px 0;
+	overflow: visible;
+
+	-webkit-transform: rotate(-6deg);
+
+	font-size: 20px;
+	line-height: 30px;
 }
 
 #frame {
@@ -65,6 +88,17 @@ body {
 
 #entry {
 	height: 41px;
+
+	-webkit-box-shadow: #fff 0 -1px 0;
+	-moz-box-shadow: #fff 0 -1px 0;
+	box-shadow: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 26px;
+	background: #e83015;
+
+	border: 3px #fff dashed;
 }
 
 #entry p {
@@ -77,7 +111,35 @@ body {
 }
 
 #entry fieldset {
+	position: absolute;
+	left: 1px;
 	top: 5px;
+	height: 17px;
+	right: 200px;
+	border-width: 7px 8px 8px 8px;
+	/*-webkit-border-image: url(../images/inset-border-l.png) 7 8 8 8 repeat repeat;*/
+	/*-moz-border-image: url(../images/inset-border-l.png) 7 8 8 8 repeat repeat;*/
+	/*-webkit-border-radius: 6px;*/
+	/*-moz-border-radius: 4px;*/
+
+	-webkit-border-image: none;
+	-moz-border-image: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+
+	border-radius: 4px;
+	width: 98%;
+}
+
+#entry a#submit {
+	/*background: #fff;*/
+	/*color: #e83015;*/
+	/*border-radius: 20px;*/
+	color: #fff;
+	bottom: -12px;
+	font-weight: bold;
+	font-size: 25px;
+	background: none;
 }
 
 #users a {
