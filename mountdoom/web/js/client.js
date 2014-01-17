@@ -72,7 +72,6 @@ $(channel).bind("msg", function(event, message) {
 	
 	row.appendTo(log);
 	row.css('width', BOX_WIDTH);
-	onScreenScroll();
 })
 // another user joined the channel
 // - add to the chat log
@@ -100,7 +99,6 @@ $(channel).bind("msg", function(event, message) {
 	
 	row.appendTo(log);
 	row.css('width', BOX_WIDTH);
-	onScreenScroll();
 })
 // another user joined the channel
 // - add to the user list
@@ -155,7 +153,6 @@ $(channel).bind("msg", function(event, message) {
 	
 	row.appendTo(log);
 	row.css('width', BOX_WIDTH);
-	onScreenScroll();
 })
 // another user left the channel
 // - remove from the user list
