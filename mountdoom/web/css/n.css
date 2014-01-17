@@ -145,3 +145,27 @@ body {
 #users a {
 	text-decoration: none;
 }
+
+#login {
+	background: #e83015;
+}
+#login p {
+	color: #fff;
+	background: none;
+	font-size: 20px;
+	text-align: left;
+	margin-left: 10px;
+}
+#login p label {
+	color: #fff;
+	font-size: 15px;
+}
+#login input {
+	height: 30px;
+	padding: 0 10px;
+	width: 100px;
+}
+#login .lantern {
+	position: absolute;
+	top: -120px;
+}
