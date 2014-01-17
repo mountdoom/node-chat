@@ -105,9 +105,9 @@ body {
 	position: fixed;
 	height: 25px;
 	left: 15px;
-	right: 270px;
-	width: 90%;
+	right: 100px;
 	bottom: 36px;
+	width: auto;
 }
 
 #entry fieldset {
