@@ -17,6 +17,8 @@ chatServer.addChannel({
 	sys.puts(msg.nick + " join");
 }).addListener("part", function(msg) {
 	sys.puts(msg.nick + " part");
+}).addListener("file", function(msg) {
+	sys.puts("<" + msg.nick + "> " + msg.text);
 });
 
 // server static web files

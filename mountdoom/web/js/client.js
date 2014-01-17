@@ -129,6 +129,63 @@ $(channel).bind("msg", function(event, message) {
 		'line-height': _css_line_height + 'px'
 	});
 })
+.bind("file", function(event, message){
+	message.nick= UNICODE.un(message.nick);
+	var time = formatTime(message.timestamp),
+		row = $("<div></div>")
+			.addClass("chat-file");
+	
+	$("<span></span>")
+		.addClass("chat-time")
+		.text(time)
+		.appendTo(row);
+	
+	$("<span></span>")
+		.addClass("chat-nick")
+		.text(message.nick)
+		.appendTo(row);
+	
+	$("<img></img>", {
+		src: message.text
+	}).addClass("chat-img")
+	.appendTo(row);
+		
+	// !NOEVIL
+	row.appendTo(log);
+	row.css('width', BOX_WIDTH + 'px');
+	row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
+
+	// font-size: 20px;
+	// line-height: 30px;
+
+	var _css_font_size,
+		_css_line_height;
+	
+	if (message.text.length < 5) {
+		_css_font_size = 100; 
+		_css_line_height = 110; 
+	} else
+	if (message.text.length < 15) {
+		_css_font_size = 75; 
+		_css_line_height = 85; 
+	} else
+	if (message.text.length < 25) {
+		_css_font_size = 50; 
+		_css_line_height = 60; 
+	} else
+	if (message.text.length < 35) {
+		_css_font_size = 35; 
+		_css_line_height = 45; 
+	} else {
+		_css_font_size = 20; 
+		_css_line_height = 30;
+	}
+
+	row.find('.chat-text').css({
+		'font-size': _css_font_size + 'px',
+		'line-height': _css_line_height + 'px'
+	});
+})
 // another user joined the channel
 // - add to the chat log
 .bind("join", function(event, message) {
@@ -164,7 +221,7 @@ $(channel).bind("msg", function(event, message) {
 		nick  = $("<a></a>", {
 			"class": colors[0]
 			, text: message.nick
-			, "href": "javascript:void(0);"
+			, href: "javascript:void(0);"
 		});
 	colors.push(colors.shift());
 	$("#users > a").each(function() {
@@ -286,6 +343,21 @@ $(function(){
 	$("#user-list").click(function(){
 		// alert("user-list")
 		$("#user-div").toggle(250);
+	})
+})
+
+//upload file
+$(function(){
+	$(".upload-file-submit").click(function(){
+		$("#upload-file").click();
+	})
+	$("#upload-file").change(function(){
+		var uploadFile= new UploadFile();
+		var self= this;
+		uploadFile.readFile(this.files[0], function(base64){
+			channel.upload(base64);
+			self.files= [];
+		})
 	})
 })
 

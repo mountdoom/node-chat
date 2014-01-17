@@ -105,9 +105,9 @@ body {
 	position: fixed;
 	height: 25px;
 	left: 15px;
-	right: 270px;
-	width: 90%;
+	right: 100px;
 	bottom: 36px;
+	width: auto;
 }
 
 #entry fieldset {
@@ -158,11 +158,19 @@ body {
 	-webkit-animation-timing-function :linear;
 	-webkit-animation-duration: 10s;
 	-webkit-animation-name: scrollLeft;
+#login {
+	background: #e83015;
 }
 
 @-webkit-keyframes scrollLeft {
 0% {left:0;}
 100% {left:1020px;}
+#login p {
+	color: #fff;
+	background: none;
+	font-size: 20px;
+	text-align: left;
+	margin-left: 10px;
 }
 
 .eggContainer{
@@ -173,6 +181,9 @@ body {
 	right: 0;
 	z-index: 999;
 	overflow: hidden;
+#login p label {
+	color: #fff;
+	font-size: 15px;
 }
 .eggContainer .font{
 	font-size: 150px;
@@ -180,7 +191,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-transform:skew(-20deg,12deg);
+#login input {
+	height: 30px;
+	padding: 0 10px;
+	width: 100px;
 }
 .eggContainer:empty{
 	display: none;
+#login .lantern {
+	position: absolute;
+	top: -120px;
 }
