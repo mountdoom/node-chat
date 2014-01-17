@@ -57,7 +57,9 @@ $(channel).bind('online', function(e, online) {
 .bind("msg", function(event, message) {
 	message.text = UNICODE.un(message.text);
 	message.nick = UNICODE.un(message.nick);
-
+	if(log.get(0).childNodes.length > 50){
+		log.children().first().remove();
+	}
 	msg = secret(message.text);
 
 	if (!msg)
@@ -302,7 +304,7 @@ $(function() {
 					.addClass("channel");
 				message.focus();
 				$("#logout").show();
-				
+
 			},
 			error: function() {
 				loginError("Nickname in use.");
