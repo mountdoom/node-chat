@@ -57,7 +57,9 @@ $(channel).bind('online', function(e, online) {
 .bind("msg", function(event, message) {
 	message.text = UNICODE.un(message.text);
 	message.nick = UNICODE.un(message.nick);
-
+	if(log.get(0).childNodes.length > 50){
+		log.children().first().remove();
+	}
 	msg = secret(message.text);
 
 	if (!msg)
@@ -67,10 +69,14 @@ $(channel).bind('online', function(e, online) {
 		row = $("<div></div>").addClass("chat-msg");
 
 	if (typeof msg == 'string' && msg.indexOf('<<') == 0) {
+		
+		if (~msg.slice(2).indexOf('<')) return;
+
 		var el = $("<div class='font slide-right'><span>" + msg.slice(2) + "</span></div>");
 		el.css({
 			top: Math.random()* 0.5 * (eggContainer.height() - 150) + 75
-		})
+		});
+
 		el.appendTo('.eggContainer')
 		el.get(0).addEventListener('webkitAnimationEnd', function() {
 			$(this).remove()
@@ -78,6 +84,8 @@ $(channel).bind('online', function(e, online) {
 
 	} else
 	if (typeof msg == 'string' && msg.indexOf('>>') == 0) {
+		if (~msg.slice(2).indexOf('<')) return;
+
 		var el = $("<div class='font slide-left'><span>" + msg.slice(2) + "</span></div>");
 		el.css({
 			top: Math.random() * 0.5 * (eggContainer.height() - 150) + 75
@@ -102,6 +110,8 @@ $(channel).bind('online', function(e, online) {
 		if (typeof msg == 'object') {
 			$('<img class="chat-img" src="' + msg.img + '">').appendTo(row);
 		} else {
+			if (~msg.slice(2).indexOf('<')) return;
+			
 			$("<span></span>")
 				.addClass("chat-text")
 				.text(msg)
@@ -302,7 +312,7 @@ $(function() {
 					.addClass("channel");
 				message.focus();
 				$("#logout").show();
-				
+
 			},
 			error: function() {
 				loginError("Nickname in use.");

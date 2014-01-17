@@ -114,7 +114,7 @@ body {
 	position: fixed;
 	left: 0;
 	right: 0;
-	bottom: 26px;
+	bottom: 0;
 	background: #e83015;
 
 	border: 3px #fff dashed;
@@ -125,7 +125,7 @@ body {
 	height: 25px;
 	left: 15px;
 	right: 100px;
-	bottom: 36px;
+	bottom: 10px;
 	width: auto;
 }
 
