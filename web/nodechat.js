@@ -116,6 +116,17 @@ $.extend(Channel.prototype, {
 				});
 			}
 		});
+	},
+
+	upload: function(file){
+		if (!this.id) { return; }
+		this.request("/upload", {
+			data: {
+				id: this.id,
+				file: file
+			}
+			, type:"POST"
+		});
 	}
 });
 
