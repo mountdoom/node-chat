@@ -25,18 +25,18 @@ footer p.credits, #login h1 {
 
 body > header {
   background: #000 url(../images/header-bg.png) repeat-x;
-  
+
   -webkit-box-shadow: rgba(255,255,255,0.1) 0 1px 0;
   -moz-box-shadow: rgba(255,255,255,0.1) 0 1px 0;
   box-shadow: rgba(255,255,255,0.1) 0 1px 0;
   position: fixed;
-  
+
   top: 0;
   right: 0;
   left: 0;
-  
+
   height: 23px;
-  
+
   display: block;
 }
 
@@ -73,6 +73,7 @@ body > header img {
   overflow: auto;
   max-height: 99%;
   color: #ccc;
+  -webkit-overflow-scrolling:touch;
 }
 
 #chat-log div.chat-msg {
@@ -179,11 +180,11 @@ body > header img {
   text-indent: -1px;
   text-shadow: rgba(0,0,0,1) 0 -1px 0, rgba(0,0,0,0.4) 0 0 1px;
   line-height: 30px;
-  
+
   margin: 0 0 5px 0;
   width: 155px;
   height: 35px;
-  
+
   position: relative;
   cursor: pointer;
 }
@@ -250,7 +251,7 @@ body > header img {
   /*width: auto;*/width: 90%;
   bottom: 46px;
   /*height: 40px;*/
-  
+
 }
 
 #entry input[type=text]{
