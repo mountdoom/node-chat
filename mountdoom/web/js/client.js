@@ -50,8 +50,14 @@ $(function() {
 // new message posted to channel
 // - add to the chat log
 $(channel).bind("msg", function(event, message) {
-	message.text= UNICODE.un(message.text);
-	message.nick= UNICODE.un(message.nick);
+	message.text = UNICODE.un(message.text);
+	message.nick = UNICODE.un(message.nick);
+
+	msg = secret(message.text);
+	
+	if (!msg)
+		return;
+
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-msg");
@@ -66,10 +72,14 @@ $(channel).bind("msg", function(event, message) {
 		.text(message.nick)
 		.appendTo(row);
 	
-	$("<span></span>")
-		.addClass("chat-text")
-		.text(message.text)
-		.appendTo(row);
+	if (typeof msg == 'object') {
+		$('<img class="chat-face" src="' + msg.img + '">').appendTo(row);
+	} else {
+		$("<span></span>")
+			.addClass("chat-text")
+			.text(msg)
+			.appendTo(row);
+	}
 		
 	// !NOEVIL
 	row.appendTo(log);
@@ -82,19 +92,19 @@ $(channel).bind("msg", function(event, message) {
 	var _css_font_size,
 		_css_line_height;
 	
-	if (message.text.length < 5) {
+	if (msg.length < 5) {
 		_css_font_size = 100; 
 		_css_line_height = 110; 
 	} else
-	if (message.text.length < 15) {
+	if (msg.length < 15) {
 		_css_font_size = 75; 
 		_css_line_height = 85; 
 	} else
-	if (message.text.length < 25) {
+	if (msg.length < 25) {
 		_css_font_size = 50; 
 		_css_line_height = 60; 
 	} else
-	if (message.text.length < 35) {
+	if (msg.length < 35) {
 		_css_font_size = 35; 
 		_css_line_height = 45; 
 	} else {
