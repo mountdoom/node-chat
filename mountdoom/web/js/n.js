@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 	var color = new Array('#ff4d00', '#268f21', '#009cff', '#c1328e', '#006284');
 	if (window.DeviceMotionEvent) {
-		var speed = 60;
+		var speed = 45;
 		var x = y = z = lastX = lastY = lastZ = 0;
 		window.addEventListener('devicemotion', function() {
 			var acceleration = event.accelerationIncludingGravity;
