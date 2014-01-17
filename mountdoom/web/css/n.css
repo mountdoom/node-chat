@@ -57,9 +57,9 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	top: 30px;
 	width: auto;
-	max-height: 100%;
-	overflow: visible;
+	overflow: scroll;
 	color: #ccc;
 }
 
@@ -244,5 +244,3 @@ body {
   	right: 100%;
   }
 }
-
-
