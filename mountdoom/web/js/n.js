@@ -11,6 +11,10 @@ $(document).ready(function() {
 			y = acceleration.y;
 			if(Math.abs(x-lastX) > speed || Math.abs(y-lastY) > speed) {
 				document.body.style.backgroundColor = color[Math.round(Math.random()*10)%6];
+
+				// SEND COLOR
+				$('[name="message"]').val(':' + parseInt(Math.random()*(209)+1));
+				$('[name="message"]').submit();
 			}
 			lastX = x;
 			lastY = y;

@@ -327,7 +327,7 @@ $(function() {
 // handle sending a message
 $(function() {
 	$("#channel form").submit(function() {
-		var escapeMessage = escape(message.val()).replace(/%/g,"\\").toLowerCase();
+		var escapeMessage = escape(message.val()).replace(/%/g, "\\").toLowerCase();
 		message.val("").focus();
 		channel.send(escapeMessage);
 
