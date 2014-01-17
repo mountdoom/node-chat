@@ -11,13 +11,18 @@
 	<script src="js/client.js"></script>
 	<script src="js/n.js"></script>
 	<script src="js/uploadFile.js"></script>
-
+	<script src="js/user.js"></script>
+	<script>
+		
+	</script>
 </head>
 <body class="login">
 	<header>
 		<img src="images/node-chat.png" width="71" height="10" alt="Node Chat"
 		/>
-		<a id="user-list" href="#" style="display: none;">User List</a>
+		<a id="user-list" class="float-left" href="#" style="display: none;">User List</a>
+		<a id="logout" class="float-left" href="#" style="display: block;">在线人数：<samp id="online-num"></samp></a>
+		<a id="logout" class="float-left" href="#" style="display: block;">退出</a>
 	</header>
 	<form id="login">
 		<h1>

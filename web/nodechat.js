@@ -63,6 +63,7 @@ $.extend(Channel.prototype, {
 		this.pollingErrors++;
 		setTimeout(this.poll, 10*1000);
 	}
+
 });
 
 $.extend(Channel.prototype, {
@@ -77,10 +78,10 @@ $.extend(Channel.prototype, {
 					(options.error || $.noop)();
 					return;
 				}
-				
 				channel.id = data.id;
 				channel.since = data.since;
 				channel.poll();
+				var user= new User(channel.id);
 				
 				(options.success || $.noop)();
 			},
@@ -88,6 +89,41 @@ $.extend(Channel.prototype, {
 		});
 	},
 	
+	login: function(uuid, options){
+		var channel = this;
+		this.request("/login", {
+			data: { uuid: uuid },
+			success: function(data) {
+				if (!data) {
+					(options.error || $.noop)();
+					return;
+				}
+				channel.id = data.id;
+				channel.since = data.since;
+				channel.poll();
+				var user= new User(channel.id);
+				
+				(options.success || $.noop)();
+			},
+			error: options.error || $.noop
+		});
+	},
+
+	logout: function(uuid, options){
+		var channel = this;
+		this.request("/logout", {
+			data: { uuid: uuid },
+			success: function(data) {
+				if (!data) {
+					(options.error || $.noop)();
+					return;
+				}
+				(options.success || $.noop)();
+			},
+			error: options.error || $.noop
+		});
+	},
+
 	part: function() {
 		if (!this.id) { return; }
 		this.request("/part", {
@@ -127,6 +163,11 @@ $.extend(Channel.prototype, {
 			}
 			, type:"POST"
 		});
+	}
+	
+	, onlineNumber: function(num){
+		console.log("onlineNumber")
+		$("#online-num").text(num);
 	}
 });
 

@@ -19,7 +19,6 @@ var UNICODE= {
 			return ""
 	}
 }
-
 // TODO: handle connectionerror
 
 $(function() {
@@ -264,10 +263,12 @@ $(channel).bind("msg", function(event, message) {
 			log.scrollTop(log[0].scrollHeight);
 		}, 10);
 	}
-});
+})
 
 // handle login (choosing a nick)
 $(function() {
+	
+	var login = $("#login");
 	function loginError(error) {
 		login
 			.addClass("error")
@@ -277,8 +278,6 @@ $(function() {
 			.find("input")
 				.focus();
 	}
-	
-	var login = $("#login");
 	login.submit(function() {
 		var nick = $.trim($("#nick").val());
 		
@@ -331,11 +330,60 @@ $(function(){
 	})
 	$("#upload-file").change(function(){
 		var uploadFile= new UploadFile();
-		var self= this;
-		uploadFile.readFile(this.files[0], function(base64){
+		var files= this.files;
+		var url = webkitURL.createObjectURL(files[0]);
+
+		uploadFile.readFile(files[0], function(base64){
 			channel.upload(base64);
-			self.files= [];
+			files= [];
 		})
+	})
+})
+
+// login
+$(function(){
+	var user = new User();
+	var login = $("#login");
+	function loginError(error) {
+		login
+			.addClass("error")
+			.find("label")
+				.text(error + " Please choose another:")
+			.end()
+			.find("input")
+				.focus();
+	}
+	if(user.id){
+		channel.login(user.id, {
+			success: function(json) {
+				$("body")
+					.removeClass("login")
+					.addClass("channel");
+				message.focus();
+			},
+			error: function() {
+				// loginError("Nickname in use.");
+			}
+		});
+	}
+
+})
+
+//logout
+$(function(){
+	$("#logout").click(function(){
+		var user = new User();
+		if(user.id){
+			channel.logout(user.id, {
+				success: function() {
+					user.DelCookie("uuid");
+					location.reload();
+				},
+				error: function() {
+					// loginError("Nickname in use.");
+				}
+			})
+		}
 	})
 })
 

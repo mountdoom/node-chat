@@ -161,14 +161,7 @@ body > header img {
   -moz-border-image: url(../images/inset-border.png) 5 7 7 5 stretch stretch;
   border-image: url(../images/inset-border.png) 5 7 7 5 stretch stretch;
 }
-#user-list{
-  float: right;
-  line-height: 23px;
-  margin-right: 20px;
-  font-size: 14px;
-  color: #fff;
-  text-decoration: none;
-}
+
 #users {
  /* position: fixed;
   width: 155px;
@@ -453,3 +446,11 @@ body.login #login { display: block;}
 
 .chat-text{word-wrap:break-word;}
 #message{width: 100%;height: 45px;margin: 0px;border: 0px;padding: 0px;background: transparent;color: #ffffff;}
+.float-left{
+  float: right;
+  line-height: 23px;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+}
