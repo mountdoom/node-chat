@@ -21,7 +21,6 @@ UploadFile.prototype.zip= function(base64, callback){
 	var image=new Image();
 	image.src=base64;
 	image.onload = function(){
-		console.log(image.width, image.height)
 		if(image.width>0&&image.height>0)
 		{
 			var rate=(proMaxWidth/image.width<proMaxHeight/image.height)?proMaxWidth/image.width:proMaxHeight/image.height;
@@ -39,7 +38,7 @@ UploadFile.prototype.zip= function(base64, callback){
 			}
 		}
 		callback(image);
-		
+
 	};
 	// image.onload(function(){
 	// 	console.log()
