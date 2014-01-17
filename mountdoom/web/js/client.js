@@ -29,8 +29,9 @@ $(function() {
 	// Add a button that can be easily styled
 	$("<a></a>", {
 		id: "submit",
-		text: "Send",
+		text: "说",
 		href: "#",
+		style: "right: 15px;",
 		click: function(event) {
 			event.preventDefault();
 			$(this).closest("form").submit();
