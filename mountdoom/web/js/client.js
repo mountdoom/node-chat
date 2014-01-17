@@ -342,7 +342,7 @@ $(function(){
 		var uploadFile= new UploadFile();
 		var files= this.files;
 		var url = webkitURL.createObjectURL(files[0]);
-
+		
 		uploadFile.readFile(files[0], function(base64){
 			channel.upload(base64);
 			files= [];
