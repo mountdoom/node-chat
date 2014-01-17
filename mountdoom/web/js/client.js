@@ -29,8 +29,9 @@ $(function() {
 	// Add a button that can be easily styled
 	$("<a></a>", {
 		id: "submit",
-		text: "Send",
+		text: "说",
 		href: "#",
+		style: "right: 15px;",
 		click: function(event) {
 			event.preventDefault();
 			$(this).closest("form").submit();
@@ -325,6 +326,9 @@ $(function(){
 
 //upload file
 $(function(){
+	$(".upload-file-submit").click(function(){
+		$("#upload-file").click();
+	})
 	$("#upload-file").change(function(){
 		var uploadFile= new UploadFile();
 		var self= this;
