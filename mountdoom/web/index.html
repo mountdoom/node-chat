@@ -1,57 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>NodeChat</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-	<link rel="stylesheet" type="text/css" href="css/layout.css">
-	<link rel="stylesheet" type="text/css" href="css/n.css">
-	<script src="js/jquery-1.4.2.js"></script>
-	<script src="js/nodechat.js"></script>
-	<script src="js/client.js"></script>
-	<script src="js/n.js"></script>
-	<script src="js/secret.js"></script>
-	<script src="js/uploadFile.js"></script>
-
-</head>
-<body class="login">
-	<header>
-		<img src="images/node-chat.png" width="71" height="10" alt="Node Chat"/>
-		<a id="user-list" href="#" style="display: none;">User List</a>
-	</header>
-	<form id="login">
-		<p>
-			<label for="nick">敢问<span style="font-size: 25px;">英雄</span>尊姓大名</label>
-			<input type="text" id="nick" maxlength="50" autocomplete="off" />
-			<img class="lantern" src="images/lantern.png" alt="">
-		</p>
-	</form>
-	<section id="channel">
-		<section id="frame">
-			<div id="chat-log">
-			</div>
-		</section>
-		<div id="user-div">
-			<ul id="users" class="button_list">
-			</ul>
-		</div>
-		<form id="entry">
-			<fieldset>
-				<p>
-					<input type="text" name="message" value="" autocomplete="off" id="message"/>
-				</p>
-				<input type="submit" value="说" id="Send"/>
-				<a id="submit" class="upload-file-submit" href="#" style="right: -23px;">图</a>
-				<input type="file" id="upload-file" style="display:none;">
-			</fieldset>
-		</form>
-		<footer>
-			<p class="credits">
-				Goyoo
-				<a href="#">G3</a>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			NodeChat
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="css/layout.css">
+		<link rel="stylesheet" type="text/css" href="css/n.css">
+		<script src="js/jquery-1.4.2.js">
+		</script>
+		<script src="js/nodechat.js">
+		</script>
+		<script src="js/client.js">
+		</script>
+		<script src="js/n.js">
+		</script>
+		<script src="js/secret.js">
+		</script>
+		<script src="js/uploadFile.js">
+		</script>
+	</head>
+	<body class="login">
+		<header>
+			<img src="images/node-chat.png" width="71" height="10" alt="Node Chat"
+			/>
+			<a id="user-list" href="#" style="display: none;">
+				User List
+			</a>
+		</header>
+		<form id="login">
+			<p>
+				<label for="nick">
+					敢问
+					<span style="font-size: 25px;">
+						英雄
+					</span>
+					尊姓大名
+				</label>
+				<input type="text" id="nick" maxlength="50" autocomplete="off" />
+				<img class="lantern" src="images/lantern.png" alt="">
 			</p>
-		</footer>
-	</section>
-<div class="eggContainer"></div>
-</body>
+		</form>
+		<section id="channel">
+			<section id="frame">
+				<div id="chat-log">
+				</div>
+			</section>
+			<div id="user-div">
+				<ul id="users" class="button_list">
+				</ul>
+			</div>
+			<form id="entry">
+				<fieldset>
+					<p>
+						<input type="text" name="message" value="" autocomplete="off" id="message"
+						/>
+					</p>
+					<input type="submit" value="说" id="Send" />
+					<a id="submit" class="upload-file-submit" href="#" style="right: -23px;">
+						图
+					</a>
+					<input type="file" id="upload-file" style="display:none;">
+				</fieldset>
+			</form>
+			<footer>
+				<p class="credits">
+					Goyoo
+					<a href="#">
+						G3
+					</a>
+				</p>
+			</footer>
+		</section>
+		<div class="eggContainer">
+			aaa
+		</div>
+	</body>
 </html>
