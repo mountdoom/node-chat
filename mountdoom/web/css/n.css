@@ -157,10 +157,30 @@ body {
 	-webkit-animation-iteration-count : infinite;
 	-webkit-animation-timing-function :linear;
 	-webkit-animation-duration: 10s;
-	-webkit-animation-name: scroll;
+	-webkit-animation-name: scrollLeft;
 }
 
-@-webkit-keyframes scroll {
+@-webkit-keyframes scrollLeft {
 0% {left:0;}
 100% {left:1020px;}
+}
+
+.eggContainer{
+	position: absolute;
+	top: 0;
+	bottom: 80px;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	overflow: hidden;
+}
+.eggContainer .font{
+	font-size: 150px;
+	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(238, 255, 0, 1)), to(rgba(0, 106, 255, 1)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-transform:skew(-20deg,12deg);
+}
+.eggContainer:empty{
+	display: none;
 }

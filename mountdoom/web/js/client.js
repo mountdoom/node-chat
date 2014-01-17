@@ -4,6 +4,7 @@ var title = document.title,
 	colors  = ["green", "orange", "yellow", "red", "fuschia", "blue"],
 	channel = nodeChat.connect("/chat"),
 	log,
+	eggContainer,
 	message;
 var UNICODE= {
 	to: function(string){
@@ -25,7 +26,9 @@ var UNICODE= {
 $(function() {
 	log = $("#chat-log");
 	message = $("#message");
-	
+	eggContainer = $('.eggContainer');
+
+
 	// Add a button that can be easily styled
 	$("<a></a>", {
 		id: "submit",
@@ -38,7 +41,7 @@ $(function() {
 		}
 	})
 	.appendTo("#entry fieldset");
-	
+
 	// Add a message indicator when a nickname is clicked
 	$("#users").delegate("a", "click", function() {
 		message
@@ -55,22 +58,41 @@ $(channel).bind("msg", function(event, message) {
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-msg");
-	
+	console.log(message);
+	if(message.text.indexOf('<<') == 0){
+		$("<div></div>")
+		 .text(message.text.substring('<<'.length))
+		 .appendTo('.eggContainer')
+	}
+	else if (message.text.indexOf('>>') == 0) {
+		console.log(message.text)
+		 $("<div class='font'></div>")
+		 .text(message.text.substring('>>'.length))
+		 .css({position:'absolute',left:0, top:Math.random()*eggContainer.height()})
+		 .appendTo('.eggContainer')
+		 .animate({left:eggContainer.width()}, 2000, function () {
+		 	 // $(this).remove();
+		 })
+	}
+	else{
+
 	$("<span></span>")
 		.addClass("chat-time")
 		.text(time)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-nick")
 		.text(message.nick)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-text")
 		.text(message.text)
 		.appendTo(row);
-		
+
+	}
+
 	// !NOEVIL
 	row.appendTo(log);
 	row.css('width', BOX_WIDTH + 'px');
@@ -81,24 +103,24 @@ $(channel).bind("msg", function(event, message) {
 
 	var _css_font_size,
 		_css_line_height;
-	
+
 	if (message.text.length < 5) {
-		_css_font_size = 100; 
-		_css_line_height = 110; 
+		_css_font_size = 100;
+		_css_line_height = 110;
 	} else
 	if (message.text.length < 15) {
-		_css_font_size = 75; 
-		_css_line_height = 85; 
+		_css_font_size = 75;
+		_css_line_height = 85;
 	} else
 	if (message.text.length < 25) {
-		_css_font_size = 50; 
-		_css_line_height = 60; 
+		_css_font_size = 50;
+		_css_line_height = 60;
 	} else
 	if (message.text.length < 35) {
-		_css_font_size = 35; 
-		_css_line_height = 45; 
+		_css_font_size = 35;
+		_css_line_height = 45;
 	} else {
-		_css_font_size = 20; 
+		_css_font_size = 20;
 		_css_line_height = 30;
 	}
 
@@ -115,22 +137,22 @@ $(channel).bind("msg", function(event, message) {
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-msg chat-system-msg");
-	
+
 	$("<span></span>")
 		.addClass("chat-time")
 		.text(time)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-nick")
 		.text(message.nick)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-text")
 		.text("joined the room")
 		.appendTo(row);
-	
+
 	// row.appendTo(log);
 })
 // another user joined the channel
@@ -168,22 +190,22 @@ $(channel).bind("msg", function(event, message) {
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-msg chat-system-msg");
-	
+
 	$("<span></span>")
 		.addClass("chat-time")
 		.text(time)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-nick")
 		.text(message.nick)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-text")
 		.text("left the room")
 		.appendTo(row);
-	
+
 	// row.appendTo(log);
 })
 // another user left the channel
@@ -220,11 +242,11 @@ $(function() {
 			.find("input")
 				.focus();
 	}
-	
+
 	var login = $("#login");
 	login.submit(function() {
 		var nick = $.trim($("#nick").val());
-		
+
 		// TODO: move the check into nodechat.js
 		if (!nick.length || !/^[a-zA-Z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF\u4E00-\u9FA5]+$/.test(nick)) {
 			loginError("Invalid Nickname.");
@@ -242,7 +264,7 @@ $(function() {
 				loginError("Nickname in use.");
 			}
 		});
-		
+
 		return false;
 	});
 	login.find("input").focus();
@@ -251,10 +273,10 @@ $(function() {
 // handle sending a message
 $(function() {
 	$("#channel form").submit(function() {
-		var escapeMessage = escape(message.val()).replace(/%/g,"\\").toLowerCase(); 
+		var escapeMessage = escape(message.val()).replace(/%/g,"\\").toLowerCase();
 		message.val("").focus();
 		channel.send(escapeMessage);
-		
+
 		return false;
 	});
 });
@@ -271,7 +293,7 @@ $(function(){
 $(function() {
 	var focused = true,
 		unread = 0;
-	
+
 	$(window)
 		.blur(function() {
 			focused = false;
@@ -281,7 +303,7 @@ $(function() {
 			unread = 0;
 			document.title = title;
 		});
-	
+
 	$(channel).bind("msg", function(event, message) {
 		if (!focused) {
 			unread++;
@@ -300,16 +322,16 @@ function formatTime(timestamp) {
 		hours = date.getHours(),
 		minutes = date.getMinutes(),
 		ampm = "AM";
-	
+
 	if (hours > 12) {
 		hours -= 12;
 		ampm = "PM";
 	}
-	
+
 	if (minutes < 10) {
 		minutes = "0" + minutes;
 	}
-	
+
 	return hours + ":" + minutes + " " + ampm;
 }
 
