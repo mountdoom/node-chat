@@ -7,6 +7,19 @@ body {
 }
 
 #chat-log div.chat-msg {
+	background: #e83015;
+	border-bottom: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	margin-bottom: 20px;
+}
+
+#chat-log div.chat-msg:nth-child(2n) {
+	background: none;
+}
+
+#chat-log div.chat-system-msg {
 	padding: 6px 70px 6px 30px;
 	font-size: 10pt;
 
@@ -15,21 +28,18 @@ body {
 	line-height: 140%;
 	text-indent: -20px;
 	border-radius: 3px;
-
 	margin: 10px auto;
-
 	border: solid 1px red;
-	background: #fff;
+	background: #fff !important;
 }
-
-#chat-log div.chat-msg:nth-child(2n) {
-	background: #fff;
-}
-
 #chat-log div.chat-system-msg .chat-nick {
 	margin-right: 4px;
 	color: red;
 	font-weight: bold;
+}
+#chat-log div.chat-system-msg .chat-text {
+	color: red;
+	font-size: 14px;
 }
 
 #chat-log {
@@ -49,10 +59,23 @@ body {
 	text-shadow: none;
 }
 .chat-nick {
-	color: red;
+	font-size: 25px;
+	font-weight: bold;
+	-webkit-transform: rotate(6deg);
 }
 .chat-text {
-	color: red;
+	color: #fff;
+	font-weight: bold;
+	color: #fff;
+	font-weight: bold;
+	display: block;
+	padding: 10px 0;
+	overflow: visible;
+
+	-webkit-transform: rotate(-6deg);
+
+	font-size: 20px;
+	line-height: 30px;
 }
 
 #frame {

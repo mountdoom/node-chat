@@ -69,9 +69,42 @@ $(channel).bind("msg", function(event, message) {
 		.addClass("chat-text")
 		.text(message.text)
 		.appendTo(row);
-	
+		
+	// !NOEVIL
 	row.appendTo(log);
-	row.css('width', BOX_WIDTH);
+	row.css('width', BOX_WIDTH + 'px');
+	row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
+
+	// font-size: 20px;
+	// line-height: 30px;
+
+	var _css_font_size,
+		_css_line_height;
+	
+	if (message.text.length < 5) {
+		_css_font_size = 100; 
+		_css_line_height = 110; 
+	} else
+	if (message.text.length < 15) {
+		_css_font_size = 75; 
+		_css_line_height = 85; 
+	} else
+	if (message.text.length < 25) {
+		_css_font_size = 50; 
+		_css_line_height = 60; 
+	} else
+	if (message.text.length < 35) {
+		_css_font_size = 35; 
+		_css_line_height = 45; 
+	} else {
+		_css_font_size = 20; 
+		_css_line_height = 30;
+	}
+
+	row.find('.chat-text').css({
+		'font-size': _css_font_size + 'px',
+		'line-height': _css_line_height + 'px'
+	});
 })
 // another user joined the channel
 // - add to the chat log
@@ -97,8 +130,7 @@ $(channel).bind("msg", function(event, message) {
 		.text("joined the room")
 		.appendTo(row);
 	
-	row.appendTo(log);
-	row.css('width', BOX_WIDTH);
+	// row.appendTo(log);
 })
 // another user joined the channel
 // - add to the user list
@@ -151,8 +183,7 @@ $(channel).bind("msg", function(event, message) {
 		.text("left the room")
 		.appendTo(row);
 	
-	row.appendTo(log);
-	row.css('width', BOX_WIDTH);
+	// row.appendTo(log);
 })
 // another user left the channel
 // - remove from the user list
