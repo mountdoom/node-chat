@@ -26,13 +26,15 @@
 	</head>
 	<body class="login">
 		<header>
-			<img src="images/node-chat.png" width="71" height="10" alt="Node Chat"
-			/>
+			<!-- 
+			<img src="images/node-chat.png" width="71" height="10" alt="Node Chat"/> 
+			-->
+			<p style="color: #ddd; margin: 5px; font-size: 12px; display: inline-block;">光音网络</p>
 			<a id="user-list" class="float-left" href="#" style="display: none;">
 				User List
 			</a>
-			<a class="float-left" href="#" style="display: block;">在线人数：<samp id="online-num"></samp></a>
-			<a id="logout" class="float-left" href="#" style="display: block;">退出</a>
+			<a class="float-left" href="#" style="display: none;">在线人数：<samp id="online-num"></samp></a>
+			<a id="logout" class="float-left" href="#" style="display: none;">退出</a>
 		</header>
 		
 		<form id="login">
@@ -60,7 +62,8 @@
 			<form id="entry">
 				<fieldset>
 					<p>
-						<input type="text" name="message" value="" autocomplete="off" id="message"/>
+						<input type="text" name="message" value="" autocomplete="off" id="message"
+						/>
 					</p>
 					<input type="submit" value="说" id="Send" />
 					<a id="submit" class="upload-file-submit" href="#" style="right: -23px;">

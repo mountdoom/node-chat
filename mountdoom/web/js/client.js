@@ -21,7 +21,6 @@ var UNICODE= {
 	}
 }
 // TODO: handle connectionerror
-
 $(function() {
 	log = $("#chat-log");
 	message = $("#message");
@@ -51,7 +50,11 @@ $(function() {
 
 // new message posted to channel
 // - add to the chat log
-$(channel).bind("msg", function(event, message) {
+$(channel).bind('online', function(e, online) {
+	$("#online-num").text(online.text).show();
+	$("#online-num").parent().show();
+})
+.bind("msg", function(event, message) {
 	message.text = UNICODE.un(message.text);
 	message.nick = UNICODE.un(message.nick);
 
@@ -158,7 +161,7 @@ $(channel).bind("msg", function(event, message) {
 		.appendTo(row);
 
 	$("<img></img>", {
-		src: message.file
+		src: message.text
 	}).addClass("chat-img")
 	.appendTo(row);
 
@@ -298,6 +301,8 @@ $(function() {
 					.removeClass("login")
 					.addClass("channel");
 				message.focus();
+				$("#logout").show();
+				
 			},
 			error: function() {
 				loginError("Nickname in use.");
@@ -365,6 +370,7 @@ $(function(){
 					.removeClass("login")
 					.addClass("channel");
 				message.focus();
+				$("#logout").show();
 			},
 			error: function() {
 				// loginError("Nickname in use.");

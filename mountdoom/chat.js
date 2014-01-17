@@ -30,7 +30,7 @@ chatServer.addChannel({
 .addListener("logout", function(msg) {
 	sys.puts(msg.nick + " leave");
 })
-.addListener("onlineNumber", function(msg) {
+.addListener("online", function(msg) {
 	sys.puts("online number: "+ msg);
 })
 
