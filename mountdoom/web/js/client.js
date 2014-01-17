@@ -100,7 +100,7 @@ $(channel).bind('online', function(e, online) {
 			.appendTo(row);
 
 		if (typeof msg == 'object') {
-			$('<img class="chat-face" src="' + msg.img + '">').appendTo(row);
+			$('<img class="chat-img" src="' + msg.img + '">').appendTo(row);
 		} else {
 			$("<span></span>")
 				.addClass("chat-text")
@@ -117,12 +117,12 @@ $(channel).bind('online', function(e, online) {
 			_css_line_height;
 
 		if (msg.length < 5) {
-			_css_font_size = 100;
-			_css_line_height = 110;
+			_css_line_height = 85;
+			_css_font_size = 75;
 		} else
 		if (msg.length < 15) {
-			_css_font_size = 75;
-			_css_line_height = 85;
+			_css_line_height = 75;
+			_css_font_size = 65;
 		} else
 		if (msg.length < 25) {
 			_css_font_size = 50;
@@ -148,7 +148,7 @@ $(channel).bind('online', function(e, online) {
 	message.nick= UNICODE.un(message.nick);
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
-			.addClass("chat-file");
+			.addClass("chat-msg");
 
 	$("<span></span>")
 		.addClass("chat-time")

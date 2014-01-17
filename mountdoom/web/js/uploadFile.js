@@ -18,4 +18,3 @@ UploadFile.prototype.readFile = function(file, callback) {
 UploadFile.prototype.writeFile= function(base64){
 
 }
-

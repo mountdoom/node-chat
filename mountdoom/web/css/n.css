@@ -22,7 +22,7 @@ body {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 
 #chat-log div.chat-msg:nth-child(2n) {
@@ -89,8 +89,12 @@ body {
 	font-size: 20px;
 	line-height: 30px;
 }
-.chat-face {
+.chat-img {
 	display: block;
+	max-width: 80%;
+}
+.chat-file {
+
 }
 
 #frame {
