@@ -59,7 +59,7 @@ body {
 	bottom: 0;
 	width: auto;
 	max-height: 100%;
-	overflow: auto;
+	overflow: visible;
 	color: #ccc;
 }
 
