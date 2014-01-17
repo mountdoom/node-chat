@@ -56,7 +56,7 @@ $(channel).bind("msg", function(event, message) {
 	message.nick = UNICODE.un(message.nick);
 
 	msg = secret(message.text);
-	
+
 	if (!msg)
 		return;
 
@@ -66,18 +66,18 @@ $(channel).bind("msg", function(event, message) {
 	if (typeof msg == 'string' && msg.indexOf('<<') == 0) {
 		var el = $("<div class='font slide-right'><span>" + msg.slice(2) + "</span></div>");
 		el.css({
-			top: Math.random() * (eggContainer.height() - 150) + 75
+			top: Math.random()* 0.5 * (eggContainer.height() - 150) + 75
 		})
 		el.appendTo('.eggContainer')
 		el.get(0).addEventListener('webkitAnimationEnd', function() {
 			$(this).remove()
 		});
 
-	} else 
+	} else
 	if (typeof msg == 'string' && msg.indexOf('>>') == 0) {
 		var el = $("<div class='font slide-left'><span>" + msg.slice(2) + "</span></div>");
 		el.css({
-			top: Math.random() * (eggContainer.height() - 150) + 75
+			top: Math.random() * 0.5 * (eggContainer.height() - 150) + 75
 		});
 
 		el.appendTo('.eggContainer')
@@ -138,6 +138,7 @@ $(channel).bind("msg", function(event, message) {
 			'font-size': _css_font_size + 'px',
 			'line-height': _css_line_height + 'px'
 		});
+		log.get(0).scrollTop = log.get(0).scrollHeight;
 	}
 
 }).bind("file", function(event, message) {
@@ -145,22 +146,22 @@ $(channel).bind("msg", function(event, message) {
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-file");
-	
+
 	$("<span></span>")
 		.addClass("chat-time")
 		.text(time)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-nick")
 		.text(message.nick)
 		.appendTo(row);
-	
+
 	$("<img></img>", {
 		src: message.file
 	}).addClass("chat-img")
 	.appendTo(row);
-		
+
 	// !NOEVIL
 	row.appendTo(log);
 	row.css('width', BOX_WIDTH + 'px');
@@ -271,7 +272,7 @@ $(channel).bind("msg", function(event, message) {
 
 // handle login (choosing a nick)
 $(function() {
-	
+
 	var login = $("#login");
 	function loginError(error) {
 		login
