@@ -1,0 +1,91 @@
+header {
+	z-index: 10;
+}
+
+body {
+	background: #e83015;
+}
+
+#chat-log div.chat-msg {
+	padding: 6px 70px 6px 30px;
+	font-size: 10pt;
+
+	border-width: 0 0 1px 0;
+	position: relative;
+	line-height: 140%;
+	text-indent: -20px;
+	border-radius: 3px;
+
+	margin: 10px auto;
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+
+	/*
+	-webkit-box-shadow: #fff 0 1px 0;
+	-moz-box-shadow: #fff 0 1px 0;
+	box-shadow: #fff 0 1px 0;
+	*/
+
+	border: solid 1px red;
+	background: #fff;
+}
+
+#chat-log div.chat-msg:nth-child(2n) {
+	background: #fff;
+}
+
+.chat-time {
+	display: none;
+	color: red;
+	text-shadow: none;
+}
+.chat-nick {
+	color: red;
+}
+.chat-text {
+	color: red;
+}
+
+#frame {
+	top: 0px;
+	bottom: 60px;
+	left: 0px;
+	right: 0px;
+	width: auto;
+}
+
+#chat-log {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	max-height: 100%;
+	overflow: auto;
+	color: #ccc;
+}
+
+#entry {
+	height: 41px;
+}
+
+#entry p {
+	position: fixed;
+	height: 25px;
+	left: 15px;
+	right: 270px;
+	width: 90%;
+	bottom: 36px;
+}
+
+#entry fieldset {
+	top: 5px;
+}
+
+#users a {
+	text-decoration: none;
+}
