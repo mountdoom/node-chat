@@ -59,8 +59,10 @@ body {
 	bottom: 0;
 	top: 30px;
 	width: auto;
-	overflow: scroll;
+	/*overflow: scroll;*/
 	color: #ccc;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .chat-time {
