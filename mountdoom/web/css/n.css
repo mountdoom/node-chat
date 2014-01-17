@@ -6,6 +6,16 @@ body {
 	background: #e83015;
 }
 
+#message{width: 100%;height: 45px;margin: 0px;border: 0px;padding: 0px;background: transparent;color: #ffffff;}
+.float-left{
+  float: right;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  color: #ddd; margin: 5px; font-size: 12px; line-height: auto;
+}
+
 #chat-log div.chat-msg {
 	background: #e83015;
 	border-bottom: none;
@@ -235,3 +245,4 @@ body {
   }
 }
 >>>>>>> 75d79c7bf627e97701371ca12139d9f9a20e5473
+
