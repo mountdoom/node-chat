@@ -16,7 +16,7 @@ var funnyMap = {
 };
 
 var secret = function(msg) {
-	if (msg.indexOf(':') === 0) {
+	if (msg.indexOf(':') === 0 || msg.indexOf('：') === 0) {
 		return {
 			img: 'funny/line_' + msg.substr(1) + '.png'
 		};
