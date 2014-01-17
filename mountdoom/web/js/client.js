@@ -4,6 +4,7 @@ var title = document.title,
 	colors  = ["green", "orange", "yellow", "red", "fuschia", "blue"],
 	channel = nodeChat.connect("/chat"),
 	log,
+	eggContainer,
 	message;
 var UNICODE= {
 	to: function(string){
@@ -24,7 +25,9 @@ var UNICODE= {
 $(function() {
 	log = $("#chat-log");
 	message = $("#message");
-	
+	eggContainer = $('.eggContainer');
+
+
 	// Add a button that can be easily styled
 	$("<a></a>", {
 		id: "submit",
@@ -37,7 +40,7 @@ $(function() {
 		}
 	})
 	.appendTo("#entry fieldset");
-	
+
 	// Add a message indicator when a nickname is clicked
 	$("#users").delegate("a", "click", function() {
 		message
@@ -49,64 +52,95 @@ $(function() {
 // new message posted to channel
 // - add to the chat log
 $(channel).bind("msg", function(event, message) {
-	message.text= UNICODE.un(message.text);
-	message.nick= UNICODE.un(message.nick);
+	message.text = UNICODE.un(message.text);
+	message.nick = UNICODE.un(message.nick);
+
+	msg = secret(message.text);
+	
+	if (!msg)
+		return;
+
 	var time = formatTime(message.timestamp),
-		row = $("<div></div>")
-			.addClass("chat-msg");
-	
-	$("<span></span>")
-		.addClass("chat-time")
-		.text(time)
-		.appendTo(row);
-	
-	$("<span></span>")
-		.addClass("chat-nick")
-		.text(message.nick)
-		.appendTo(row);
-	
-	$("<span></span>")
-		.addClass("chat-text")
-		.text(message.text)
-		.appendTo(row);
-		
-	// !NOEVIL
-	row.appendTo(log);
-	row.css('width', BOX_WIDTH + 'px');
-	row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
+		row = $("<div></div>").addClass("chat-msg");
 
-	// font-size: 20px;
-	// line-height: 30px;
+	if (typeof msg == 'string' && msg.indexOf('<<') == 0) {
+		var el = $("<div class='font slide-right'><span>" + msg.slice(2) + "</span></div>");
+		el.css({
+			top: Math.random() * (eggContainer.height() - 150) + 75
+		})
+		el.appendTo('.eggContainer')
+		el.get(0).addEventListener('webkitAnimationEnd', function() {
+			$(this).remove()
+		});
 
-	var _css_font_size,
-		_css_line_height;
-	
-	if (message.text.length < 5) {
-		_css_font_size = 100; 
-		_css_line_height = 110; 
-	} else
-	if (message.text.length < 15) {
-		_css_font_size = 75; 
-		_css_line_height = 85; 
-	} else
-	if (message.text.length < 25) {
-		_css_font_size = 50; 
-		_css_line_height = 60; 
-	} else
-	if (message.text.length < 35) {
-		_css_font_size = 35; 
-		_css_line_height = 45; 
+	} else 
+	if (typeof msg == 'string' && msg.indexOf('>>') == 0) {
+		var el = $("<div class='font slide-left'><span>" + msg.slice(2) + "</span></div>");
+		el.css({
+			top: Math.random() * (eggContainer.height() - 150) + 75
+		});
+
+		el.appendTo('.eggContainer')
+		el.get(0).addEventListener('webkitAnimationEnd', function() {
+			$(this).remove()
+		});
+
 	} else {
-		_css_font_size = 20; 
-		_css_line_height = 30;
+		$("<span></span>")
+			.addClass("chat-time")
+			.text(time)
+			.appendTo(row);
+
+		$("<span></span>")
+			.addClass("chat-nick")
+			.text(message.nick)
+			.appendTo(row);
+
+		if (typeof msg == 'object') {
+			$('<img class="chat-face" src="' + msg.img + '">').appendTo(row);
+		} else {
+			$("<span></span>")
+				.addClass("chat-text")
+				.text(msg)
+				.appendTo(row);
+		}
+
+		// !NOEVIL
+		row.appendTo(log);
+		row.css('width', BOX_WIDTH + 'px');
+		row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
+
+		var _css_font_size,
+			_css_line_height;
+
+		if (msg.length < 5) {
+			_css_font_size = 100;
+			_css_line_height = 110;
+		} else
+		if (msg.length < 15) {
+			_css_font_size = 75;
+			_css_line_height = 85;
+		} else
+		if (msg.length < 25) {
+			_css_font_size = 50;
+			_css_line_height = 60;
+		} else
+		if (msg.length < 35) {
+			_css_font_size = 35;
+			_css_line_height = 45;
+
+		} else {
+			_css_font_size = 20;
+			_css_line_height = 30;
+		}
+
+		row.find('.chat-text').css({
+			'font-size': _css_font_size + 'px',
+			'line-height': _css_line_height + 'px'
+		});
 	}
 
-	row.find('.chat-text').css({
-		'font-size': _css_font_size + 'px',
-		'line-height': _css_line_height + 'px'
-	});
-})
-.bind("file", function(event, message){
+}).bind("file", function(event, message) {
 	message.nick= UNICODE.un(message.nick);
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
@@ -123,7 +157,7 @@ $(channel).bind("msg", function(event, message) {
 		.appendTo(row);
 	
 	$("<img></img>", {
-		src: message.text
+		src: message.file
 	}).addClass("chat-img")
 	.appendTo(row);
 		
@@ -132,36 +166,6 @@ $(channel).bind("msg", function(event, message) {
 	row.css('width', BOX_WIDTH + 'px');
 	row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
 
-	// font-size: 20px;
-	// line-height: 30px;
-
-	var _css_font_size,
-		_css_line_height;
-	
-	if (message.text.length < 5) {
-		_css_font_size = 100; 
-		_css_line_height = 110; 
-	} else
-	if (message.text.length < 15) {
-		_css_font_size = 75; 
-		_css_line_height = 85; 
-	} else
-	if (message.text.length < 25) {
-		_css_font_size = 50; 
-		_css_line_height = 60; 
-	} else
-	if (message.text.length < 35) {
-		_css_font_size = 35; 
-		_css_line_height = 45; 
-	} else {
-		_css_font_size = 20; 
-		_css_line_height = 30;
-	}
-
-	row.find('.chat-text').css({
-		'font-size': _css_font_size + 'px',
-		'line-height': _css_line_height + 'px'
-	});
 })
 // another user joined the channel
 // - add to the chat log
@@ -171,22 +175,22 @@ $(channel).bind("msg", function(event, message) {
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-msg chat-system-msg");
-	
+
 	$("<span></span>")
 		.addClass("chat-time")
 		.text(time)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-nick")
 		.text(message.nick)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-text")
 		.text("joined the room")
 		.appendTo(row);
-	
+
 	// row.appendTo(log);
 })
 // another user joined the channel
@@ -224,22 +228,22 @@ $(channel).bind("msg", function(event, message) {
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
 			.addClass("chat-msg chat-system-msg");
-	
+
 	$("<span></span>")
 		.addClass("chat-time")
 		.text(time)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-nick")
 		.text(message.nick)
 		.appendTo(row);
-	
+
 	$("<span></span>")
 		.addClass("chat-text")
 		.text("left the room")
 		.appendTo(row);
-	
+
 	// row.appendTo(log);
 })
 // another user left the channel
@@ -280,7 +284,7 @@ $(function() {
 	}
 	login.submit(function() {
 		var nick = $.trim($("#nick").val());
-		
+
 		// TODO: move the check into nodechat.js
 		if (!nick.length || !/^[a-zA-Z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF\u4E00-\u9FA5]+$/.test(nick)) {
 			loginError("Invalid Nickname.");
@@ -298,7 +302,7 @@ $(function() {
 				loginError("Nickname in use.");
 			}
 		});
-		
+
 		return false;
 	});
 	login.find("input").focus();
@@ -307,10 +311,10 @@ $(function() {
 // handle sending a message
 $(function() {
 	$("#channel form").submit(function() {
-		var escapeMessage = escape(message.val()).replace(/%/g,"\\").toLowerCase(); 
+		var escapeMessage = escape(message.val()).replace(/%/g,"\\").toLowerCase();
 		message.val("").focus();
 		channel.send(escapeMessage);
-		
+
 		return false;
 	});
 });
@@ -391,7 +395,7 @@ $(function(){
 $(function() {
 	var focused = true,
 		unread = 0;
-	
+
 	$(window)
 		.blur(function() {
 			focused = false;
@@ -401,7 +405,7 @@ $(function() {
 			unread = 0;
 			document.title = title;
 		});
-	
+
 	$(channel).bind("msg", function(event, message) {
 		if (!focused) {
 			unread++;
@@ -420,16 +424,16 @@ function formatTime(timestamp) {
 		hours = date.getHours(),
 		minutes = date.getMinutes(),
 		ampm = "AM";
-	
+
 	if (hours > 12) {
 		hours -= 12;
 		ampm = "PM";
 	}
-	
+
 	if (minutes < 10) {
 		minutes = "0" + minutes;
 	}
-	
+
 	return hours + ":" + minutes + " " + ampm;
 }
 
