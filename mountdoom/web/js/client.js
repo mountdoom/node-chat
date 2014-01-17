@@ -62,85 +62,86 @@ $(channel).bind("msg", function(event, message) {
 		return;
 
 	var time = formatTime(message.timestamp),
-		row = $("<div></div>")
-			.addClass("chat-msg");
-	console.log(message);
-	if(message.text.indexOf('<<') == 0){
-		var el = $("<div class='font slide-right'><span>"+message.text.slice(2)+"</span></div>");
-		el.css({top:Math.random()*(eggContainer.height()-150) + 75 })
+		row = $("<div></div>").addClass("chat-msg");
+
+	if (typeof msg == 'string' && msg.indexOf('<<') == 0) {
+		var el = $("<div class='font slide-right'><span>" + msg.slice(2) + "</span></div>");
+		el.css({
+			top: Math.random() * (eggContainer.height() - 150) + 75
+		})
 		el.appendTo('.eggContainer')
-		el.get(0).addEventListener('webkitAnimationEnd' , function () {
+		el.get(0).addEventListener('webkitAnimationEnd', function() {
 			$(this).remove()
 		});
-	}
-	else if (message.text.indexOf('>>') == 0) {
-		var el = $("<div class='font slide-left'><span>"+message.text.slice(2)+"</span></div>");
-		el.css({top:Math.random()*(eggContainer.height()-150) + 75 })
+
+	} else 
+	if (typeof msg == 'string' && msg.indexOf('>>') == 0) {
+		var el = $("<div class='font slide-left'><span>" + msg.slice(2) + "</span></div>");
+		el.css({
+			top: Math.random() * (eggContainer.height() - 150) + 75
+		});
+
 		el.appendTo('.eggContainer')
-		el.get(0).addEventListener('webkitAnimationEnd' , function () {
+		el.get(0).addEventListener('webkitAnimationEnd', function() {
 			$(this).remove()
 		});
-	}
-	else{
 
-	$("<span></span>")
-		.addClass("chat-time")
-		.text(time)
-		.appendTo(row);
-
-	$("<span></span>")
-		.addClass("chat-nick")
-		.text(message.nick)
-		.appendTo(row);
-
-	
-	if (typeof msg == 'object') {
-		$('<img class="chat-face" src="' + msg.img + '">').appendTo(row);
 	} else {
 		$("<span></span>")
-			.addClass("chat-text")
-			.text(msg)
+			.addClass("chat-time")
+			.text(time)
 			.appendTo(row);
+
+		$("<span></span>")
+			.addClass("chat-nick")
+			.text(message.nick)
+			.appendTo(row);
+
+		if (typeof msg == 'object') {
+			$('<img class="chat-face" src="' + msg.img + '">').appendTo(row);
+		} else {
+			$("<span></span>")
+				.addClass("chat-text")
+				.text(msg)
+				.appendTo(row);
+		}
+
+		// !NOEVIL
+		row.appendTo(log);
+		row.css('width', BOX_WIDTH + 'px');
+		row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
+
+		var _css_font_size,
+			_css_line_height;
+
+		if (msg.length < 5) {
+			_css_font_size = 100;
+			_css_line_height = 110;
+		} else
+		if (msg.length < 15) {
+			_css_font_size = 75;
+			_css_line_height = 85;
+		} else
+		if (msg.length < 25) {
+			_css_font_size = 50;
+			_css_line_height = 60;
+		} else
+		if (msg.length < 35) {
+			_css_font_size = 35;
+			_css_line_height = 45;
+
+		} else {
+			_css_font_size = 20;
+			_css_line_height = 30;
+		}
+
+		row.find('.chat-text').css({
+			'font-size': _css_font_size + 'px',
+			'line-height': _css_line_height + 'px'
+		});
 	}
 
-	// !NOEVIL
-	row.appendTo(log);
-	row.css('width', BOX_WIDTH + 'px');
-	row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
-
-	// font-size: 20px;
-	// line-height: 30px;
-
-	var _css_font_size,
-		_css_line_height;
-	
-	if (msg.length < 5) {
-		_css_font_size = 100; 
-		_css_line_height = 110; 
-	} else
-	if (msg.length < 15) {
-		_css_font_size = 75; 
-		_css_line_height = 85; 
-	} else
-	if (msg.length < 25) {
-		_css_font_size = 50; 
-		_css_line_height = 60; 
-	} else
-	if (msg.length < 35) {
-		_css_font_size = 35; 
-		_css_line_height = 45; 
-
-	} else {
-		_css_font_size = 20;
-		_css_line_height = 30;
-	}
-
-	row.find('.chat-text').css({
-		'font-size': _css_font_size + 'px',
-		'line-height': _css_line_height + 'px'
-	});
-})
-.bind("file", function(event, message){
+}).bind("file", function(event, message) {
 	message.nick= UNICODE.un(message.nick);
 	var time = formatTime(message.timestamp),
 		row = $("<div></div>")
@@ -157,7 +158,7 @@ $(channel).bind("msg", function(event, message) {
 		.appendTo(row);
 	
 	$("<img></img>", {
-		src: message.text
+		src: message.file
 	}).addClass("chat-img")
 	.appendTo(row);
 		
@@ -166,36 +167,6 @@ $(channel).bind("msg", function(event, message) {
 	row.css('width', BOX_WIDTH + 'px');
 	row.find('.chat-text').css('width', $('#frame').width() - 50 + 'px');
 
-	// font-size: 20px;
-	// line-height: 30px;
-
-	var _css_font_size,
-		_css_line_height;
-	
-	if (message.text.length < 5) {
-		_css_font_size = 100; 
-		_css_line_height = 110; 
-	} else
-	if (message.text.length < 15) {
-		_css_font_size = 75; 
-		_css_line_height = 85; 
-	} else
-	if (message.text.length < 25) {
-		_css_font_size = 50; 
-		_css_line_height = 60; 
-	} else
-	if (message.text.length < 35) {
-		_css_font_size = 35; 
-		_css_line_height = 45; 
-	} else {
-		_css_font_size = 20; 
-		_css_line_height = 30;
-	}
-
-	row.find('.chat-text').css({
-		'font-size': _css_font_size + 'px',
-		'line-height': _css_line_height + 'px'
-	});
 })
 // another user joined the channel
 // - add to the chat log
