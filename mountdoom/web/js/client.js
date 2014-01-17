@@ -60,19 +60,20 @@ $(channel).bind("msg", function(event, message) {
 			.addClass("chat-msg");
 	console.log(message);
 	if(message.text.indexOf('<<') == 0){
-		$("<div></div>")
-		 .text(message.text.substring('<<'.length))
-		 .appendTo('.eggContainer')
+		var el = $("<div class='font slide-right'><span>"+message.text.slice(2)+"</span></div>");
+		el.css({top:Math.random()*(eggContainer.height()-150) + 75 })
+		el.appendTo('.eggContainer')
+		el.get(0).addEventListener('webkitAnimationEnd' , function () {
+			$(this).remove()
+		});
 	}
 	else if (message.text.indexOf('>>') == 0) {
-		console.log(message.text)
-		 $("<div class='font'></div>")
-		 .text(message.text.substring('>>'.length))
-		 .css({position:'absolute',left:0, top:Math.random()*eggContainer.height()})
-		 .appendTo('.eggContainer')
-		 .animate({left:eggContainer.width()}, 2000, function () {
-		 	 // $(this).remove();
-		 })
+		var el = $("<div class='font slide-left'><span>"+message.text.slice(2)+"</span></div>");
+		el.css({top:Math.random()*(eggContainer.height()-150) + 75 })
+		el.appendTo('.eggContainer')
+		el.get(0).addEventListener('webkitAnimationEnd' , function () {
+			$(this).remove()
+		});
 	}
 	else{
 

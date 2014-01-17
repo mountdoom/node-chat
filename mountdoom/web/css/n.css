@@ -173,16 +173,61 @@ body {
 	bottom: 80px;
 	left: 0;
 	right: 0;
-	z-index: 999;
+	z-index: 100;
 	overflow: hidden;
 }
+
 .eggContainer .font{
+	position: absolute;
+}
+
+.eggContainer .font.slide-left {
+	-webkit-animation: slide-left 3s 1 linear;
+}
+
+.eggContainer .font.slide-right {
+	-webkit-animation: slide-right 3s 1 linear;
+}
+
+
+.eggContainer .font span{
+	display: inline-block;
 	font-size: 150px;
-	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(238, 255, 0, 1)), to(rgba(0, 106, 255, 1)));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-transform:skew(-20deg,12deg);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-transform: skew(-10deg,12deg);
+	background-color: #FFF;
+	background-image: linear-gradient( -45deg, #FF9A1A 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, #FF9A1A 50%, #FF9A1A 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) );
+	-webkit-background-size: 50px 50px;
+	-webkit-animation: zebra 2s linear infinite;
 }
 .eggContainer:empty{
 	display: none;
+}
+
+@-webkit-keyframes zebra{
+  0% {
+  	background-position: 0 0;
+  }
+  100% {
+  	background-position: 50px 50px;
+  }
+}
+
+@-webkit-keyframes slide-left{
+  0% {
+  	left: 0;
+  }
+  100% {
+  	left: 100%;
+  }
+}
+
+@-webkit-keyframes slide-right{
+  0% {
+  	right: 0
+  }
+  100% {
+  	right: 100%;
+  }
 }
