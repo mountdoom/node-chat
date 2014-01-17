@@ -11,6 +11,7 @@ function Channel(basePath) {
 	bindAll(this);
 }
 
+
 $.extend(Channel.prototype, {
 	pollingErrors: 0,
 	lastMessageId: 0,
@@ -163,11 +164,6 @@ $.extend(Channel.prototype, {
 			}
 			, type:"POST"
 		});
-	}
-	
-	, onlineNumber: function(num){
-		console.log("onlineNumber")
-		$("#online-num").text(num);
 	}
 });
 
