@@ -17,7 +17,7 @@ body {
 }
 
 #chat-log div.chat-msg {
-	background: #e83015;
+	background: none;
 	border-bottom: none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
