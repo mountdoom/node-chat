@@ -74,7 +74,7 @@ $(channel).bind('online', function(e, online) {
 
 		var el = $("<div class='font slide-right'><span>" + msg.slice(2) + "</span></div>");
 		el.css({
-			top: Math.random()* 0.5 * (eggContainer.height() - 150) + 75
+			top: Math.random() * (eggContainer.get(0).clientHeight - 150) + 50
 		});
 
 		el.appendTo('.eggContainer')
@@ -88,7 +88,7 @@ $(channel).bind('online', function(e, online) {
 
 		var el = $("<div class='font slide-left'><span>" + msg.slice(2) + "</span></div>");
 		el.css({
-			top: Math.random() * 0.5 * (eggContainer.height() - 150) + 75
+			top: Math.random() * (eggContainer.get(0).clientHeight - 150) + 50
 		});
 
 		el.appendTo('.eggContainer')
