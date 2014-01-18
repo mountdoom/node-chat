@@ -15,18 +15,18 @@ $(document).ready(function() {
 				lock= true;
 				document.body.style.backgroundColor = color[Math.floor(Math.random() * color.length)];
 				// SEND COLOR
-				if(!faceLock){
-					faceLock= true;
-					$('[name="message"]').val(':' + parseInt(Math.random() * (209) + 1));
-					$('[name="message"]').submit();
-				}	
+//				if(!faceLock){
+//					faceLock= true;
+//					$('[name="message"]').val(':' + parseInt(Math.random() * (209) + 1));
+//					$('[name="message"]').submit();
+//				}	
 
 				setTimeout(function(){
 					lock= false;
 				}, 500)
-				setTimeout(function(){
-					faceLock= false;
-				}, 5000)
+//				setTimeout(function(){
+//					faceLock= false;
+//				}, 5000)
 			}
 			lastX = x;
 			lastY = y;
