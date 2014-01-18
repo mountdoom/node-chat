@@ -108,7 +108,7 @@ $(channel).bind('online', function(e, online) {
 			.appendTo(row);
 
 		if (typeof msg == 'object') {
-			$('<img class="chat-img" src="' + msg.img + '">').appendTo(row);
+			$('<img class="chat-img chat-face" src="' + msg.img + '">').appendTo(row);
 		} else {
 			if (~msg.slice(2).indexOf('<')) return;
 			

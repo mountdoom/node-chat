@@ -6,6 +6,7 @@ $(document).ready(function() {
 		var speed = 30;
 		var x = y = z = lastX = lastY = lastZ = 0;
 		var lock= false;
+		var faceLock = false;
 		window.addEventListener('devicemotion', function() {
 			var acceleration = event.accelerationIncludingGravity;
 			x = acceleration.x;
@@ -14,11 +15,18 @@ $(document).ready(function() {
 				lock= true;
 				document.body.style.backgroundColor = color[Math.floor(Math.random() * color.length)];
 				// SEND COLOR
-				$('[name="message"]').val(':' + parseInt(Math.random() * (209) + 1));
-				$('[name="message"]').submit();
+				if(!faceLock){
+					faceLock= true;
+					$('[name="message"]').val(':' + parseInt(Math.random() * (209) + 1));
+					$('[name="message"]').submit();
+
+				}	
 				setTimeout(function(){
 					lock= false;
 				}, 500)
+				setTimeout(function(){
+					faceLock= false;
+				}, 30000)
 			}
 			lastX = x;
 			lastY = y;

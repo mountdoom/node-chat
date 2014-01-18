@@ -93,6 +93,9 @@ body {
 	display: block;
 	max-width: 80%;
 }
+.chat-face{
+	max-width: 100px;
+}
 .chat-file {
 
 }
