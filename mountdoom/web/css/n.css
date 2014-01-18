@@ -107,7 +107,6 @@ body {
 
 #entry {
 	height: 41px;
-
 	-webkit-box-shadow: #fff 0 -1px 0;
 	-moz-box-shadow: #fff 0 -1px 0;
 	box-shadow: none;
@@ -115,9 +114,10 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #e83015;
+	/*background: #e83015;*/
 
 	border: 3px #fff dashed;
+	background: transparent;
 }
 
 #entry p {
